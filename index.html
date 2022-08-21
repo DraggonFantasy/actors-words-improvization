@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Акторська майстерність - тренажер імпровізації</title>
+    <style>
+        * {
+            font-size: 24pt;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        #activeWord {
+            width: 100%;
+            margin-top: 10%;
+            text-align: center;
+            font-size: 48pt;
+            font-weight: bold;
+        }
+
+        #details {
+            color: #777;
+            font-size: 20pt;
+            display: none;
+            width: 50%;
+            margin: 0 auto;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+
+        input, button {
+            display: inline-block;
+            text-align: center;
+            border: 2px black solid;
+            border-radius: 32px;
+            height: 32pt;
+            background: #FFF;
+            width: 200px;
+        }
+
+        label {
+            font-size: 24pt;
+        }
+
+        .help {
+            width: 48px;
+            float: right;
+        }
+
+        input:hover, button:hover, .help:hover {
+            background: #EEE;
+        }
+        input:active, button:active, .help:active {
+            background: #DDD;
+        }
+
+        .darkMode {
+            background: black;
+            color: #AAA;
+            border-color: #AAA;
+        }
+
+        input.darkMode:hover, button.darkMode:hover, help.darkMode:hover {
+            background: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="details">
+        Бла бла бла потім напишу нормальний хелп, а поки що розбирайтесь самі
+    </div>
+
+    <button class="help" onclick="toggleHelp()">?</button>
+    <button class="help" onclick="toggleDark()">.</button>
+    <table>
+        <tr>
+            <td>
+                <label for="intervalMin">Мінімальний інтервал: </label>
+            </td>
+            <td>
+                <input type="number" id="intervalMin" onchange="updateValues()" value="10" />
+            </td>
+            <td>
+                <span style="margin-left: 10px;">сек</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="intervalMax">Максимальний інтервал: </label>
+            </td>
+            <td>
+                <input type="number" id="intervalMax" onchange="updateValues()" value="30" /><br>
+            </td>
+            <td>
+                <span style="margin-left: 10px;">сек</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <button id="start" style="width: 100%;" onclick="start()">Розпочати</button>
+            </td>
+        </tr>
+    </table>
+    <div id="activeWord">Тут буде слово</div>
+
+    <script src="index.js"></script>
+</body>
+</html>
