@@ -2,18 +2,33 @@ let intervalMin = undefined;
 let intervalMax = undefined;
 
 let interval = undefined;
-
+let audioEnabled = false;
 
 function generateWord() {
     return words[Math.floor(Math.random()*words.length)];
 }
 
-function setActiveWordTo(word) {
+function setActiveWordTo(word, play=true) {
     document.getElementById("activeWord").innerText = word;
+
+    if(play) {
+        const audio = new Audio('audio/' + word + '.wav');
+        // noinspection JSIgnoredPromiseFromCall
+        audio.play();
+    }
 }
 
-function updateActiveWord() {
-    setActiveWordTo(generateWord());
+function toggleAudio() {
+    audioEnabled = !audioEnabled;
+    if(audioEnabled) {
+        document.getElementById("audioToggler").innerHTML = "&#x1F509;";
+    } else {
+        document.getElementById("audioToggler").innerHTML = "&#x1F507;";
+    }
+}
+
+function updateActiveWord(play=true) {
+    setActiveWordTo(generateWord(), play);
     updateInterval();
 }
 
@@ -28,7 +43,7 @@ function updateValues() {
 
 function updateInterval() {
     const timeout = intervalMin + (Math.random() * (intervalMax - intervalMin));
-    interval = setTimeout(updateActiveWord, timeout * 1000);
+    interval = setTimeout(() => updateActiveWord(audioEnabled), timeout * 1000);
 }
 
 function start() {
@@ -39,7 +54,7 @@ function start() {
         return;
     }
     updateValues();
-    updateActiveWord();
+    updateActiveWord(false);
     setActiveWordTo("Можеш починати свою розповідь :)");
     document.getElementById("start").innerText = "Зупинити";
 }
@@ -939,7 +954,6 @@ const words = `свинцевість
 заставна
 кузня
 кульбаба
-те,щосталося
 манеж
 остовпіння
 халіф
